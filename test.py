@@ -3,10 +3,8 @@ import socket
 
 async def check_online_device(ip):
     try:
-        await asyncio.wait_for(
-            asyncio.get_event_loop().sock_connect(
-                (ip, 80)
-            ),
+        _, _ = await asyncio.wait_for(
+            asyncio.open_connection(ip, 80),
             timeout=1
         )
         return ip
